@@ -62,6 +62,21 @@ const Navbar = () => {
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
 
+    // Add effect to handle body scroll lock and fade
+    useEffect(() => {
+        if (isMenuOpen) {
+            document.body.style.overflow = 'hidden'
+            document.body.style.filter = 'brightness(0.5)'
+        } else {
+            document.body.style.overflow = 'unset'
+            document.body.style.filter = 'none'
+        }
+        return () => {
+            document.body.style.overflow = 'unset'
+            document.body.style.filter = 'none'
+        }
+    }, [isMenuOpen])
+
     return (
         <nav className={`fixed w-full z-50 transition-all duration-500 ${scrolled ? 'bg-black/80 backdrop-blur-xl' : 'bg-black/60 backdrop-blur-lg'}`}>
             {/* White accent line */}
@@ -109,7 +124,7 @@ const Navbar = () => {
                                     >
                                         {link.icon && <span className="mr-2">{link.icon}</span>}
                                         {link.label}
-                                            <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 bg-white w-0 group-hover:w-3/4 transition-all duration-300"></span>
+                                        <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 bg-white w-0 group-hover:w-3/4 transition-all duration-300"></span>
                                     </Link>
                                 )
                             ))}
@@ -127,19 +142,25 @@ const Navbar = () => {
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
                             className="p-2 text-white hover:text-white/80 focus:outline-none"
                         >
-                            {isMenuOpen ? <FiX className="w-6 h-6" /> : <FiMenu className="w-6 h-6" />}
+                            <FiMenu className="w-6 h-6" />
                         </button>
                     </div>
                 </div>
             </div>
 
             {/* Mobile menu - Slides from left */}
-            <div className={`md:hidden fixed inset-y-0 left-0 z-40 w-4/5 max-w-sm transition-all duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} !h-[90vh]`}>
-                <div className="h-full bg-black/90 backdrop-blur-xl border-r border-white/10 flex flex-col">
-                    <div className="p-4 border-b border-white/10">
+            <div className={`md:hidden fixed inset-y-0 left-0 z-40 w-4/5 max-w-sm transition-all duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} h-screen`}>
+                <div className="h-full bg-black border-r border-white/20 flex flex-col">
+                    <div className="p-4 border-b border-white/20 flex justify-between items-center">
                         <Link href="/" className="text-2xl font-bold text-white" onClick={() => setIsMenuOpen(false)}>
                             BlogHub
                         </Link>
+                        <button
+                            onClick={() => setIsMenuOpen(false)}
+                            className="p-2 text-white hover:text-white/80 focus:outline-none"
+                        >
+                            {isMenuOpen ? <FiX className="w-6 h-6" /> : <></>}
+                        </button>
                     </div>
 
                     <div className="flex-1 overflow-y-auto p-4 space-y-2">
@@ -148,30 +169,30 @@ const Navbar = () => {
                                 key={link.href}
                                 href={link.href}
                                 onClick={() => setIsMenuOpen(false)}
-                                className="flex items-center px-4 py-3 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
+                                className="flex items-center px-4 py-3 text-white font-medium text-lg hover:text-white hover:bg-white/30 rounded-lg transition-all duration-200 shadow-sm"
                             >
-                                {link.icon && <span className="mr-3">{link.icon}</span>}
+                                {link.icon && <span className="mr-3 text-white text-xl">{link.icon}</span>}
                                 {link.label}
                             </Link>
                         ))}
                     </div>
 
                     {/* Social links at bottom */}
-                    <div className="p-4 border-t border-white/10">
+                    <div className="p-4 border-t border-white/20">
                         <div className="flex justify-center space-x-4 mb-4">
                             {SOCIAL_LINKS.map((social) => (
                                 <a
                                     key={social.label}
                                     href={social.href}
-                                    className="text-white/80 hover:text-white transition-colors"
+                                    className="text-white text-xl hover:text-white/90 transition-colors hover:scale-110 transform duration-200"
                                     aria-label={social.label}
                                 >
                                     {social.icon}
                                 </a>
                             ))}
                         </div>
-                        <button className="w-full flex items-center justify-center gap-2 bg-white text-black px-4 py-3 rounded-lg hover:bg-white/90 transition-all">
-                            <FiUser className="w-4 h-4" />
+                        <button className="w-full flex items-center justify-center gap-2 bg-white text-black font-medium text-lg px-4 py-3 rounded-lg hover:bg-white/90 transition-all shadow-lg hover:shadow-xl">
+                            <FiUser className="w-5 h-5" />
                             <span>Sign In</span>
                         </button>
                     </div>
@@ -181,8 +202,7 @@ const Navbar = () => {
             {/* Overlay when menu is open */}
             {isMenuOpen && (
                 <div
-                    className="md:hidden fixed inset-0 bg-black/50 z-30"
-                    onClick={() => setIsMenuOpen(false)}
+                    className="md:hidden fixed inset-0 z-30"
                 />
             )}
         </nav>
