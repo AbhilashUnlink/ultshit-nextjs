@@ -134,7 +134,7 @@ const Navbar = () => {
             </div>
 
             {/* Mobile menu - Slides from left */}
-            <div className={`md:hidden fixed inset-y-0 left-0 z-40 w-4/5 max-w-sm transition-all duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} !h-[100vh]`}>
+            <div className={`md:hidden fixed inset-y-0 left-0 z-40 w-4/5 max-w-sm transition-all duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} !h-[90vh]`}>
                 <div className="h-full bg-black/90 backdrop-blur-xl border-r border-white/10 flex flex-col">
                     <div className="p-4 border-b border-white/10">
                         <Link href="/" className="text-2xl font-bold text-white" onClick={() => setIsMenuOpen(false)}>
