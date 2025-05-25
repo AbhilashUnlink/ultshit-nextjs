@@ -35,7 +35,7 @@ const FooterSection = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
 
                     {/* Brand Section - Crystal Clear */}
-                    <div className="flex flex-col">
+                    <div className="flex flex-col p-6">
                         <Link href="/" className="text-2xl font-bold text-black mb-4 hover:text-black/90 transition-colors">
                             BlogHub
                         </Link>
@@ -118,7 +118,7 @@ const FooterSection = () => {
                     </p>
                     <div className="flex items-center mt-4 md:mt-0 text-black/60 text-sm">
                         <FiHeart className="w-4 h-4 mr-2 text-black/80" />
-                        <span>Created with clarity</span>
+                        <span>Created by Abhilash Sharma</span>
                     </div>
                 </div>
             </div>
