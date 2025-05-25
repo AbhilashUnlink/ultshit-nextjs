@@ -30,7 +30,7 @@ const CategoriesSection = () => {
                     <span className="inline-block bg-black text-white text-sm font-medium px-4 py-2 rounded-full mb-4">
                         EXPLORE CONTENT
                     </span>
-                    <h2 className="text-4xl md:text-6xl font-bold mb-6">
+                    <h2 className="text-2xl md:text-6xl font-bold mb-6">
                         <span className="bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600">
                             Discover Categories
                         </span>

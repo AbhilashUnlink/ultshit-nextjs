@@ -23,10 +23,10 @@ const NewsLetterSection = () => {
                             <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-indigo-500/20 mb-6">
                                 <FiMail className="w-8 h-8 text-indigo-300" />
                             </div>
-                            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-cyan-200">
+                            <h2 className="text-2xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-cyan-200">
                                 Join Our Newsletter
                             </h2>
-                            <p className="text-lg text-gray-300 max-w-md mx-auto">
+                            <p className="text-md text-gray-300 max-w-md mx-auto">
                                 Get exclusive content, updates, and offers straight to your inbox
                             </p>
                         </div>

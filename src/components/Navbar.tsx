@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import {
@@ -57,7 +57,6 @@ const Navbar = () => {
     const [lastScrollY, setLastScrollY] = useState(0)
     const [visible, setVisible] = useState(true)
     const pathname = usePathname()
-    const navRef = useRef(null)
 
     useEffect(() => {
         const handleScroll = () => {
@@ -97,7 +96,6 @@ const Navbar = () => {
 
     return (
         <nav
-            ref={navRef}
             className={`fixed w-full z-50 transition-all duration-500 ${scrolled ? 'bg-black/80 backdrop-blur-xl' : 'bg-black/60 backdrop-blur-lg'} ${visible ? 'translate-y-0' : '-translate-y-full'}`}
         >
             <div className={`absolute bottom-0 h-px w-full bg-gradient-to-r from-transparent via-white/50 to-transparent ${scrolled ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`} />
@@ -162,7 +160,7 @@ const Navbar = () => {
                     <div className="md:hidden flex items-center">
                         <button
                             onClick={() => {
-                                window.scrollTo({ top: 0, behavior: 'smooth' })
+                                // window.scrollTo({ top: 0, behavior: 'smooth' })
                                 setIsMenuOpen(!isMenuOpen)
                             }}
                             aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
@@ -175,7 +173,7 @@ const Navbar = () => {
             </div>
 
             {/* Mobile Sidebar */}
-            <div className={`md:hidden fixed inset-y-0 left-0 z-40 w-4/5 max-w-sm transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} h-screen`}>
+            <div className={`md:hidden fixed inset-y-0 left-0 z-40 w-4/5 max-w-sm transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} h-[calc(100vh-50px)]`}>
                 <div className="h-full bg-black border-r border-white/20 flex flex-col">
                     <div className="p-4 border-b border-white/20 flex justify-between items-center">
                         <Link href="/" className="text-2xl font-bold text-white" onClick={() => setIsMenuOpen(false)}>
@@ -208,14 +206,14 @@ const Navbar = () => {
                             {SOCIAL_LINKS.map((social) => {
                                 const Icon = social.icon
                                 return (
-                                    <a
+                                    <Link
                                         key={social.label}
                                         href={social.href}
                                         className="text-white text-xl hover:text-white/90 transition-colors hover:scale-110 transform duration-200"
                                         aria-label={social.label}
                                     >
                                         <Icon />
-                                    </a>
+                                    </Link>
                                 )
                             })}
                         </div>

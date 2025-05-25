@@ -19,7 +19,7 @@ const Home = () => {
     return (
       <>
         <Navbar />
-        <main className="min-h-screen pt-16">
+        <main className="min-h-screen pt-16 text-gray-900">
           {/* Hero Section */}
           <HomeBanner2 />
 
