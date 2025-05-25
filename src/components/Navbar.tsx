@@ -89,7 +89,6 @@ const Navbar = () => {
 
     useEffect(() => {
         document.body.style.overflow = isMenuOpen ? 'hidden' : ''
-        document.body.style.filter = isMenuOpen ? 'brightness(0.5)' : ''
         return () => {
             document.body.style.overflow = ''
             document.body.style.filter = ''
