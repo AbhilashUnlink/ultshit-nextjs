@@ -31,7 +31,7 @@ const SOCIAL_LINKS = [
 
 const FooterSection = () => {
     return (
-        <footer className="bg-white backdrop-blur-2xl border-t border-white/20">
+        <footer className="bg-white backdrop-blur-2xl border-t border-white/20 border-t-gray-200">
             {/* Glowing white accent line */}
             <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-white/50 to-transparent"></div>
 

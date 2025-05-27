@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import HomeBanner2 from '@/components/hero-section/HomeBanner2'
 import CategoriesSection from '@/components/categories-section/CategoriesSection'
 import FeaturedPosts from '@/components/featured-posts/FeaturedPosts'
+import NewsLetterSection from '@/components/news-letter-section/NewsLetterSection'
 
 
 const Home = () => {
@@ -23,6 +24,7 @@ const Home = () => {
 
           {/* Categories Section */}
           <CategoriesSection />
+          <NewsLetterSection />
         </main>
       </>
     )

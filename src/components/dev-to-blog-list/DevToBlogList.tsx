@@ -32,14 +32,13 @@ const DevToBlogList = ({ tag = "technology" }: { tag: "technology" | "creativity
     const blogs = use(fetchTechBlogs(tag));
 
     return (
-        <div className="max-w-6xl mx-auto px-4 py-12 pt-24">
+        <div className="max-w-6xl mx-auto px-4 py-12 pt-28">
             <div className="text-center mb-12">
                 <h1 className="text-4xl font-bold text-gray-900 mb-2">
                     {HEADINGS[tag].title}
                 </h1>
                 <p className="text-lg text-gray-600">
                     {HEADINGS[tag].subTitle}
-
                 </p>
             </div>
 

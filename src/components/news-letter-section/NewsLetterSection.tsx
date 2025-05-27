@@ -1,7 +1,10 @@
-import React from 'react';
+'use client'
+import { whatsApp } from '@/helpers/helper.func';
+import React, { useState } from 'react';
 import { FiSend, FiMail } from 'react-icons/fi';
 
 const NewsLetterSection = () => {
+    const [message, setMessage] = useState("");
     return (
         <section className="py-20 bg-gradient-to-br from-gray-900 to-indigo-950 text-white relative overflow-hidden">
             {/* Animated background elements */}
@@ -35,6 +38,7 @@ const NewsLetterSection = () => {
                         <form className="space-y-6">
                             <div className="relative">
                                 <input
+                                    onChange={(e) => setMessage(e.target.value)}
                                     type="email"
                                     id="email"
                                     className="peer w-full px-6 py-4 bg-white/5 backdrop-blur-sm border border-white/20 rounded-xl text-white placeholder-transparent focus:outline-none focus:ring-2 focus:ring-cyan-400/50 transition-all"
@@ -49,6 +53,7 @@ const NewsLetterSection = () => {
                             </div>
 
                             <button
+                                onClick={() => whatsApp(message)}
                                 type="submit"
                                 className="w-full flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-indigo-500 to-cyan-500 rounded-xl font-semibold text-white hover:shadow-lg hover:shadow-indigo-500/30 transition-all transform hover:-translate-y-1 active:translate-y-0"
                             >

@@ -90,18 +90,39 @@ const Navbar = () => {
             document.body.style.overflow = ''
             document.body.style.filter = ''
         }
-    }, [isMenuOpen])
+    }, [isMenuOpen]);
+
+    const theme = {
+        dark: {
+            background: "bg-black",
+            color: "text-white",
+            callMeBg: "bg-white",
+            callMeText: "text-black",
+        },
+        light: {
+            background: "bg-white",
+            color: "text-black",
+            callMeBg: "bg-black",
+            callMeText: "text-white",
+        },
+    }
+
+    const current = "light"; //"dark"
+    const background = theme[current].background;
+    const color = theme[current].color;
+    const callMeBg = theme[current].callMeBg;
+    const callMeText = theme[current].callMeText;
 
     return (
         <nav
-            className={`fixed w-full z-50 transition-all duration-500 ${scrolled ? 'bg-black/80 backdrop-blur-xl' : 'bg-black/60 backdrop-blur-lg'} ${visible ? 'translate-y-0' : '-translate-y-full'}`}
+            className={`fixed w-full z-50 transition-all duration-500 ${scrolled ? `${background} backdrop-blur-xl` : `${background} backdrop-blur-lg`} ${visible ? 'translate-y-0' : '-translate-y-full'}`}
         >
             <div className={`absolute bottom-0 h-px w-full bg-gradient-to-r from-transparent via-white/50 to-transparent ${scrolled ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`} />
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-20 items-center">
                     <Link href="/" className="flex items-center group">
-                        <span className="text-2xl font-bold text-white group-hover:text-white/80 transition-colors">BlogHub</span>
+                        <span className={`text-2xl font-bold ${color} group-hover:${color}/80 transition-colors`}>BlogHub</span>
                     </Link>
 
                     {/* Desktop */}
@@ -117,7 +138,7 @@ const Navbar = () => {
                                         {/* Button with hover area */}
                                         <div className="relative group">
                                             <button
-                                                className="flex items-center px-3 py-2 text-white/80 hover:text-white transition-colors"
+                                                className={`flex items-center px-3 py-2 ${color}/80 hover:${color} transition-colors`}
                                                 aria-haspopup="true"
                                                 aria-expanded="false"
                                             >
@@ -131,12 +152,12 @@ const Navbar = () => {
                      opacity-0 scale-95 invisible
                      group-hover:opacity-100 group-hover:scale-100 group-hover:visible
                      before:content-[''] before:absolute before:-top-2 before:left-0 before:w-full before:h-4">
-                                                <div className="bg-black/80 backdrop-blur-xl rounded-lg shadow-xl overflow-hidden border border-white/10">
+                                                <div className={`${background} /80 backdrop-blur-xl rounded-lg shadow-xl overflow-hidden border border-white/10`}>
                                                     {link?.subLinks?.map((subLink) => (
                                                         <Link
                                                             key={`${link.href}-${subLink.href}`}
                                                             href={subLink.href}
-                                                            className="block px-4 py-3 text-white hover:bg-white/10 transition-colors"
+                                                            className={`block px-4 py-3 ${color} hover:${callMeBg}/10 transition-colors`}
                                                         >
                                                             {subLink.name}
                                                         </Link>
@@ -150,15 +171,15 @@ const Navbar = () => {
                                 <Link
                                     key={link.href}
                                     href={link.href}
-                                    className={`relative px-3 py-2 group flex items-center ${isActive ? 'text-white' : 'text-white/80 hover:text-white'} transition-colors`}
+                                    className={`relative px-3 py-2 group flex items-center ${isActive ? `${color}` : `${color}/80 hover:${color}`} transition-colors`}
                                 >
                                     <Icon className="w-4 h-4 mr-2" />
                                     {link.label}
-                                    <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 bg-white w-0 group-hover:w-3/4 transition-all duration-300 h-px"></span>
+                                    <span className={`absolute bottom-1 left-1/2 transform -translate-x-1/2 ${callMeBg} w-0 group-hover:w-3/4 transition-all duration-300 h-px`}></span>
                                 </Link>
                             )
                         })}
-                        <button onClick={callMe} className="flex items-center gap-2 bg-white text-black px-4 py-2 rounded-full hover:bg-white/90 transition-all transform hover:-translate-y-0.5 border border-white/20">
+                        <button onClick={callMe} className={`flex items-center gap-2 ${callMeBg} ${callMeText} px-4 py-2 rounded-full hover:${callMeBg}/90 transition-all transform hover:-translate-y-0.5 border border-white/20`}>
                             <FiPhone className="w-4 h-4" />
                             <span>Call Me</span>
                         </button>
@@ -172,22 +193,22 @@ const Navbar = () => {
                                 setIsMenuOpen(!isMenuOpen)
                             }}
                             aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-                            className="p-2 text-white hover:text-white/80"
+                            className="p-2 ${color} hover:${color}/80"
                         >
                             {isMenuOpen ? <FiX className="w-6 h-6" /> : <FiMenu className="w-6 h-6" />}
                         </button>
                     </div>
                 </div>
-            </div>
+            </div >
 
             {/* Mobile Sidebar */}
-            <div className={`md:hidden fixed inset-y-0 left-0 z-40 w-4/5 max-w-sm transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} h-[calc(100vh-50px)]`}>
-                <div className="h-full bg-black border-r border-white/20 flex flex-col">
+            < div className={`md:hidden fixed inset-y-0 left-0 z-40 w-4/5 max-w-sm transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} h-[calc(100vh-50px)]`}>
+                <div className={`h-full ${background} border-r border-white/20 flex flex-col`}>
                     <div className="p-4 border-b border-white/20 flex justify-between items-center">
-                        <Link href="/" className="text-2xl font-bold text-white" onClick={() => setIsMenuOpen(false)}>
+                        <Link href="/" className="text-2xl font-bold ${color}" onClick={() => setIsMenuOpen(false)}>
                             BlogHub
                         </Link>
-                        <button onClick={() => setIsMenuOpen(false)} className="p-2 text-white hover:text-white/80">
+                        <button onClick={() => setIsMenuOpen(false)} className="p-2 ${color} hover:${color}/80">
                             <FiX className="w-6 h-6" />
                         </button>
                     </div>
@@ -200,9 +221,9 @@ const Navbar = () => {
                                     key={link.href}
                                     href={link.href}
                                     onClick={() => setIsMenuOpen(false)}
-                                    className="flex items-center px-4 py-3 text-white font-medium text-lg hover:text-white hover:bg-white/30 rounded-lg transition-all duration-200 shadow-sm"
+                                    className="flex items-center px-4 py-3 ${color} font-medium text-lg hover:${color} hover:bg-white/30 rounded-lg transition-all duration-200 shadow-sm"
                                 >
-                                    <Icon className="mr-3 text-white text-xl" />
+                                    <Icon className="mr-3 ${color} text-xl" />
                                     {link.label}
                                 </Link>
                             )
@@ -217,7 +238,7 @@ const Navbar = () => {
                                     <Link
                                         key={social.label}
                                         href={social.href}
-                                        className="text-white text-xl hover:text-white/90 transition-colors hover:scale-110 transform duration-200"
+                                        className="${color} text-xl hover:${color}/90 transition-colors hover:scale-110 transform duration-200"
                                         aria-label={social.label}
                                     >
                                         <Icon />
@@ -225,23 +246,25 @@ const Navbar = () => {
                                 )
                             })}
                         </div>
-                        <button onClick={callMe} className="w-full flex items-center justify-center gap-2 bg-white text-black font-medium text-lg px-4 py-3 rounded-lg hover:bg-white/90 transition-all shadow-lg hover:shadow-xl">
+                        <button onClick={callMe} className={`w-full flex items-center justify-center gap-2 ${callMeBg} ${color} font-medium text-lg px-4 py-3 rounded-lg hover:${callMeBg}/90 transition-all shadow-lg hover:shadow-xl`}>
                             <FiPhone className="w-5 h-5" />
-                            <span>Call me</span>
+                            <span className={`${callMeText}`}>Call me</span>
                         </button>
                     </div>
                 </div>
-            </div>
+            </div >
 
             {/* Overlay */}
-            {isMenuOpen && (
-                <div
-                    className="md:hidden fixed inset-0 z-30 bg-black/50 backdrop-blur-sm"
-                    onClick={() => setIsMenuOpen(false)}
-                    aria-hidden="true"
-                />
-            )}
-        </nav>
+            {
+                isMenuOpen && (
+                    <div
+                        className={`md:hidden fixed inset-0 z-30 ${background}/50 backdrop-blur-sm`}
+                        onClick={() => setIsMenuOpen(false)}
+                        aria-hidden="true"
+                    />
+                )
+            }
+        </nav >
     )
 }
 
