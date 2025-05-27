@@ -5,7 +5,7 @@ import {
     FiBook,
     FiGrid,
     FiInfo,
-    FiInstagram,
+    FiLinkedin,
     FiTwitter,
     FiGithub,
     FiMail,
@@ -19,10 +19,14 @@ const NAV_LINKS = [
     { href: '/about', label: 'About', icon: <FiInfo className="w-4 h-4" /> }
 ]
 
+const linkedInHref = "https://www.linkedin.com/in/webdev-abhilash-sharma/";
+const twitterHref = "https://twitter.com/abhilashwebdev";
+const githubHref = "https://github.com/abhilashsharma1998";
+
 const SOCIAL_LINKS = [
-    { href: '#', icon: <FiInstagram className="w-5 h-5" />, label: 'Instagram' },
-    { href: '#', icon: <FiTwitter className="w-5 h-5" />, label: 'Twitter' },
-    { href: '#', icon: <FiGithub className="w-5 h-5" />, label: 'GitHub' }
+    { href: linkedInHref, icon: <FiLinkedin className="w-5 h-5" />, label: 'LinkedIn' },
+    { href: twitterHref, icon: <FiTwitter className="w-5 h-5" />, label: 'Twitter' },
+    { href: githubHref, icon: <FiGithub className="w-5 h-5" />, label: 'GitHub' }
 ]
 
 const FooterSection = () => {
@@ -44,14 +48,14 @@ const FooterSection = () => {
                         </p>
                         <div className="flex space-x-4 mt-auto">
                             {SOCIAL_LINKS.map((social) => (
-                                <a
+                                <Link
                                     key={social.label}
                                     href={social.href}
                                     className="text-black/80 hover:text-black transition-colors hover:scale-110"
                                     aria-label={social.label}
                                 >
                                     {social.icon}
-                                </a>
+                                </Link>
                             ))}
                         </div>
                     </div>
@@ -105,7 +109,7 @@ const FooterSection = () => {
                         </h3>
                         <div className="flex items-center text-black/80 hover:text-black transition-colors mb-6">
                             <FiMail className="w-5 h-5 mr-3 text-black/80" />
-                            <span>hello@bloghub.com</span>
+                            <Link href={"mailto:abhilash02172sharma@gmail.com"}>abhilash02172sharma@gmail.com</Link>
                         </div>
 
                     </div>

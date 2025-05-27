@@ -6,7 +6,6 @@ import { usePathname } from 'next/navigation'
 import {
     FiMenu,
     FiX,
-    FiUser,
     FiHome,
     FiBook,
     FiGrid,
@@ -14,9 +13,11 @@ import {
     FiChevronDown,
     FiInstagram,
     FiTwitter,
-    FiGithub
+    FiGithub,
+    FiPhone
 } from 'react-icons/fi'
 import { CATEGORIES_CONSTANT } from '@/constants/categories.c'
+import { callMe } from '@/helpers/helper.func'
 
 const NAV_LINKS = [
     {
@@ -157,9 +158,9 @@ const Navbar = () => {
                                 </Link>
                             )
                         })}
-                        <button className="flex items-center gap-2 bg-white text-black px-4 py-2 rounded-full hover:bg-white/90 transition-all transform hover:-translate-y-0.5 border border-white/20">
-                            <FiUser className="w-4 h-4" />
-                            <span>Sign In</span>
+                        <button onClick={callMe} className="flex items-center gap-2 bg-white text-black px-4 py-2 rounded-full hover:bg-white/90 transition-all transform hover:-translate-y-0.5 border border-white/20">
+                            <FiPhone className="w-4 h-4" />
+                            <span>Call Me</span>
                         </button>
                     </div>
 
@@ -224,9 +225,9 @@ const Navbar = () => {
                                 )
                             })}
                         </div>
-                        <button className="w-full flex items-center justify-center gap-2 bg-white text-black font-medium text-lg px-4 py-3 rounded-lg hover:bg-white/90 transition-all shadow-lg hover:shadow-xl">
-                            <FiUser className="w-5 h-5" />
-                            <span>Sign In</span>
+                        <button onClick={callMe} className="w-full flex items-center justify-center gap-2 bg-white text-black font-medium text-lg px-4 py-3 rounded-lg hover:bg-white/90 transition-all shadow-lg hover:shadow-xl">
+                            <FiPhone className="w-5 h-5" />
+                            <span>Call me</span>
                         </button>
                     </div>
                 </div>
