@@ -1,19 +1,13 @@
+'use client'
 import React from 'react';
 import { FiArrowRight } from 'react-icons/fi';
 import './categories.css';
+import Link from 'next/link';
+import { CATEGORIES_CONSTANT } from '@/constants/categories.c';
+import { useRouter } from 'next/navigation';
 
-const CategoriesSection = () => {
-    const categories = [
-        { name: 'Technology', icon: '💻', color: 'from-blue-500 to-cyan-400' },
-        { name: 'Lifestyle', icon: '🌟', color: 'from-purple-500 to-pink-400' },
-        { name: 'Travel', icon: '✈️', color: 'from-amber-500 to-orange-400' },
-        { name: 'Food', icon: '🍽️', color: 'from-emerald-500 to-teal-400' },
-        { name: 'Fitness', icon: '💪', color: 'from-red-500 to-rose-400' },
-        { name: 'Finance', icon: '💰', color: 'from-green-500 to-lime-400' },
-        { name: 'Creativity', icon: '🎨', color: 'from-indigo-500 to-violet-400' },
-        { name: 'Gaming', icon: '🎮', color: 'from-fuchsia-500 to-purple-400' }
-    ];
-
+const CategoriesSection = ({ showExploreContentButton = true, showViewAllButton = true }) => {
+    const router = useRouter();
     return (
         <section className="py-24 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
             {/* Animated background elements */}
@@ -27,9 +21,9 @@ const CategoriesSection = () => {
             <div className="container mx-auto px-6 relative">
                 {/* Section header */}
                 <div className="text-center mb-20">
-                    <span className="inline-block bg-black text-white text-sm font-medium px-4 py-2 rounded-full mb-4">
+                    {showExploreContentButton && <span className="inline-block bg-black text-white text-sm font-medium px-4 py-2 rounded-full mb-4">
                         EXPLORE CONTENT
-                    </span>
+                    </span>}
                     <h2 className="text-2xl md:text-6xl font-bold mb-6">
                         <span className="bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600">
                             Discover Categories
@@ -42,8 +36,9 @@ const CategoriesSection = () => {
 
                 {/* Categories grid */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                    {categories.map((category) => (
-                        <div
+                    {CATEGORIES_CONSTANT?.map((category) => (
+                        <Link
+                            href={category.href}
                             key={category.name}
                             className={`group relative bg-white rounded-2xl p-6 text-center cursor-pointer overflow-hidden transition-all duration-500 hover:-translate-y-2 shadow-lg hover:shadow-xl border border-gray-100`}
                         >
@@ -65,17 +60,25 @@ const CategoriesSection = () => {
                                     Explore <FiArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
                                 </div>
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
 
                 {/* View all button */}
-                <div className="text-center mt-16">
-                    <button className="inline-flex items-center px-8 py-4 bg-black text-white rounded-full font-bold hover:bg-gray-800 transition-all transform hover:-translate-y-1 shadow-lg hover:shadow-xl">
-                        View All Categories
-                        <FiArrowRight className="ml-3 transition-transform group-hover:translate-x-1" />
-                    </button>
-                </div>
+                {
+                    showViewAllButton &&
+                    <div className="text-center mt-16"
+                        onClick={() => {
+                            router.push("/categories");
+                        }}>
+                        <button
+
+                            className="inline-flex items-center px-8 py-4 bg-black text-white rounded-full font-bold hover:bg-gray-800 transition-all transform hover:-translate-y-1 shadow-lg hover:shadow-xl">
+                            View All Categories
+                            <FiArrowRight className="ml-3 transition-transform group-hover:translate-x-1" />
+                        </button>
+                    </div>
+                }
             </div>
         </section>
     );

@@ -16,6 +16,7 @@ import {
     FiTwitter,
     FiGithub
 } from 'react-icons/fi'
+import { CATEGORIES_CONSTANT } from '@/constants/categories.c'
 
 const NAV_LINKS = [
     {
@@ -32,11 +33,7 @@ const NAV_LINKS = [
         href: '/categories',
         label: 'Categories',
         icon: FiGrid,
-        subLinks: [
-            { href: '/tech', label: 'Technology' },
-            { href: '/travel', label: 'Travel' },
-            { href: '/food', label: 'Food' }
-        ]
+        subLinks: CATEGORIES_CONSTANT
     },
     {
         href: '/about',
@@ -113,28 +110,38 @@ const Navbar = () => {
                             const isActive = pathname === link.href
 
                             return link.subLinks ? (
-                                <div key={link.href} className="relative group">
-                                    <button
-                                        className="flex items-center px-3 py-2 text-white/80 hover:text-white transition-colors"
-                                        aria-haspopup="true"
-                                        aria-expanded="false"
-                                        aria-controls="submenu-categories"
-                                    >
-                                        <Icon className="w-4 h-4 mr-2" />
-                                        {link.label}
-                                        <FiChevronDown className="ml-1 transition-transform group-hover:rotate-180" />
-                                    </button>
-                                    <div id="submenu-categories" className="absolute left-0 mt-2 w-48 origin-top-right scale-95 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-200">
-                                        <div className="bg-black/80 backdrop-blur-xl rounded-lg shadow-xl overflow-hidden border border-white/10">
-                                            {link.subLinks.map((subLink) => (
-                                                <Link
-                                                    key={`${link.href}-${subLink.href}`}
-                                                    href={subLink.href}
-                                                    className="block px-4 py-3 text-white hover:bg-white/10 transition-colors"
-                                                >
-                                                    {subLink.label}
-                                                </Link>
-                                            ))}
+                                <div key={link.href} className="relative">
+                                    {/* Navigation Item Container */}
+                                    <div className="inline-block">
+                                        {/* Button with hover area */}
+                                        <div className="relative group">
+                                            <button
+                                                className="flex items-center px-3 py-2 text-white/80 hover:text-white transition-colors"
+                                                aria-haspopup="true"
+                                                aria-expanded="false"
+                                            >
+                                                <Icon className="w-4 h-4 mr-2" />
+                                                {link.label}
+                                                <FiChevronDown className="ml-1 transition-transform group-hover:rotate-180" />
+                                            </button>
+
+                                            {/* Dropdown with hover-safe zone */}
+                                            <div className="absolute left-0 top-full pt-2 w-48 transition-all duration-200
+                     opacity-0 scale-95 invisible
+                     group-hover:opacity-100 group-hover:scale-100 group-hover:visible
+                     before:content-[''] before:absolute before:-top-2 before:left-0 before:w-full before:h-4">
+                                                <div className="bg-black/80 backdrop-blur-xl rounded-lg shadow-xl overflow-hidden border border-white/10">
+                                                    {link?.subLinks?.map((subLink) => (
+                                                        <Link
+                                                            key={`${link.href}-${subLink.href}`}
+                                                            href={subLink.href}
+                                                            className="block px-4 py-3 text-white hover:bg-white/10 transition-colors"
+                                                        >
+                                                            {subLink.name}
+                                                        </Link>
+                                                    ))}
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
