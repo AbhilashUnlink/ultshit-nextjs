@@ -11,13 +11,11 @@ import {
     FiGrid,
     FiInfo,
     FiChevronDown,
-    FiInstagram,
-    FiTwitter,
-    FiGithub,
     FiPhone
 } from 'react-icons/fi'
 import { CATEGORIES_CONSTANT } from '@/constants/categories.c'
 import { callMe } from '@/helpers/helper.func'
+import { SOCIAL_LINKS } from '@/constants/social-links.c'
 
 const NAV_LINKS = [
     {
@@ -41,12 +39,6 @@ const NAV_LINKS = [
         label: 'About',
         icon: FiInfo
     }
-]
-
-const SOCIAL_LINKS = [
-    { href: '#', icon: FiInstagram, label: 'Instagram' },
-    { href: '#', icon: FiTwitter, label: 'Twitter' },
-    { href: '#', icon: FiGithub, label: 'GitHub' }
 ]
 
 const Navbar = () => {
@@ -232,19 +224,18 @@ const Navbar = () => {
 
                     <div className="p-4 border-t border-white/20">
                         <div className="flex justify-center space-x-4 mb-4">
-                            {SOCIAL_LINKS.map((social) => {
-                                const Icon = social.icon
-                                return (
-                                    <Link
-                                        key={social.label}
-                                        href={social.href}
-                                        className="${color} text-xl hover:${color}/90 transition-colors hover:scale-110 transform duration-200"
-                                        aria-label={social.label}
-                                    >
-                                        <Icon />
-                                    </Link>
-                                )
-                            })}
+                            {SOCIAL_LINKS?.map(({ label, href, icon: Icon }) => (
+                                <Link
+                                    key={label}
+                                    href={href}
+                                    className="text-black/80 hover:text-black transition-colors hover:scale-110"
+                                    aria-label={label}
+                                >
+
+                                    <Icon className="w-5 h-5" />
+
+                                </Link>
+                            ))}
                         </div>
                         <button onClick={callMe} className={`w-full flex items-center justify-center gap-2 ${callMeBg} ${color} font-medium text-lg px-4 py-3 rounded-lg hover:${callMeBg}/90 transition-all shadow-lg hover:shadow-xl`}>
                             <FiPhone className="w-5 h-5" />

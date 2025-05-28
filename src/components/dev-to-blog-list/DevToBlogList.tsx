@@ -48,7 +48,7 @@ const DevToBlogList = ({ tag = "technology" }: { tag: "technology" | "creativity
                         key={blog.id}
                         className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 flex flex-col"
                     >
-                        {blog.social_image && (
+                        {/* {blog.social_image && (
                             <div className="h-48 overflow-hidden">
                                 <Image
                                     width={100}
@@ -58,7 +58,7 @@ const DevToBlogList = ({ tag = "technology" }: { tag: "technology" | "creativity
                                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                                 />
                             </div>
-                        )}
+                        )} */}
 
                         <div className="p-6 flex-1 flex flex-col">
                             <div className="flex-1">

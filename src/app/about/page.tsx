@@ -64,7 +64,7 @@ const Page = () => {
                             className="text-lg md:text-xl leading-relaxed text-gray-700"
                             variants={fadeIn}
                         >
-                            Currently shaping the future of payments at <span className="font-medium text-purple-600 hover:text-purple-700 transition-colors">Payment Options</span>, a Singapore-based fintech company building secure, seamless payment infrastructure for next-generation e-commerce.
+                            Currently shaping the future of payments at <span className="font-medium text-indigo-600 hover:text-indigo-700  transition-colors">Payment Options</span>, a Singapore-based fintech company building secure, seamless payment infrastructure for next-generation e-commerce.
                         </motion.p>
 
                         <motion.div

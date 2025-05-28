@@ -1,13 +1,11 @@
 'use client'
+import { SOCIAL_LINKS } from '@/constants/social-links.c'
 import Link from 'next/link'
 import {
     FiHome,
     FiBook,
     FiGrid,
     FiInfo,
-    FiLinkedin,
-    FiTwitter,
-    FiGithub,
     FiMail,
     FiHeart
 } from 'react-icons/fi'
@@ -19,15 +17,7 @@ const NAV_LINKS = [
     { href: '/about', label: 'About', icon: <FiInfo className="w-4 h-4" /> }
 ]
 
-const linkedInHref = "https://www.linkedin.com/in/webdev-abhilash-sharma/";
-const twitterHref = "https://twitter.com/abhilashwebdev";
-const githubHref = "https://github.com/abhilashsharma1998";
 
-const SOCIAL_LINKS = [
-    { href: linkedInHref, icon: <FiLinkedin className="w-5 h-5" />, label: 'LinkedIn' },
-    { href: twitterHref, icon: <FiTwitter className="w-5 h-5" />, label: 'Twitter' },
-    { href: githubHref, icon: <FiGithub className="w-5 h-5" />, label: 'GitHub' }
-]
 
 const FooterSection = () => {
     return (
@@ -47,14 +37,16 @@ const FooterSection = () => {
                             Where ideas shine bright
                         </p>
                         <div className="flex space-x-4 mt-auto">
-                            {SOCIAL_LINKS.map((social) => (
+                            {SOCIAL_LINKS.map(({ label, href, icon: Icon }) => (
                                 <Link
-                                    key={social.label}
-                                    href={social.href}
+                                    key={label}
+                                    href={href}
                                     className="text-black/80 hover:text-black transition-colors hover:scale-110"
-                                    aria-label={social.label}
+                                    aria-label={label}
                                 >
-                                    {social.icon}
+
+                                    <Icon className="w-5 h-5" />
+
                                 </Link>
                             ))}
                         </div>
